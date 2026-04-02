@@ -2,13 +2,125 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <title>Secure Loading...</title>
 
-  <!-- right away -->
-  <meta http-equiv="refresh" content="0; url=https://www.bilibili.com/video/BV1GJ411x7h7/">
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+      background: #f9f9f9;
+    }
+
+    #progress-container {
+      width: 60%;
+      margin: 20px auto;
+      background: #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      display: none;
+    }
+
+    #progress-bar {
+      width: 0%;
+      height: 20px;
+      background: #4caf50;
+    }
+
+    a {
+      font-size: 18px;
+      text-decoration: none;
+      color: blue;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 15px;
+      color: #555;
+    }
+
+    #preview-img {
+      margin-top: 30px;
+      max-width: 300px;
+      border-radius: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
+
 <body>
-  <p>进行一些反诈试验：</p>
-  <a href="https://www.bilibili.com/video/BV1GJ411x7h7/">(*////o////*)</a>
+
+  <h2>进行一些</h2>
+  <p id="main-text">可以有效规避被骗的dataset</p>
+
+ 
+  <!-- iriguchi -->
+  <a href="#" onclick="go()">～(∠・ω< )⌒★</a>
+
+   <!-- pic -->
+  <img id="preview-img" src="M1.png" alt="preview">
+
+
+  <!-- 条 -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <div id="status"></div>
+
+  <script>
+    function go() {
+      document.querySelector("a").style.display = "none";
+      document.getElementById("progress-container").style.display = "block";
+      document.getElementById("preview-img").style.display = "none"; // 点击后隐藏图片
+
+      let progress = 0;
+      let bar = document.getElementById("progress-bar");
+      let text = document.getElementById("main-text");
+      let status = document.getElementById("status");
+
+      const messages = [
+        "请勿关闭页面...",
+        "即...",
+        "刻...",
+        "就...",
+        "......",
+        
+      ];
+
+      let msgIndex = 0;
+
+      let interval = setInterval(() => {
+        progress += Math.random() * 10;
+
+        if (progress >= 99) {
+          progress = 99;
+        }
+
+        bar.style.width = progress + "%";
+
+        if (Math.random() > 0.7 && msgIndex < messages.length) {
+          text.innerText = messages[msgIndex++];
+        }
+
+      }, 300);
+
+      setTimeout(() => {
+        clearInterval(interval);
+
+        bar.style.width = "100%";
+        text.innerText = "～(∠・ω< )⌒★";
+        status.innerText = "～(∠・ω< )⌒★";
+
+        setTimeout(() => {
+          window.location.href = "https://www.bilibili.com/video/BV1GJ411x7h7/";
+        }, 800);
+
+      }, 8000);
+    }
+  </script>
+
 </body>
 </html>
